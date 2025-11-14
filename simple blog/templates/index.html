@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Flask Blog</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📝 My Simple Flask Blog</h1>
+    <a href="{{ url_for('add_post') }}" class="btn">Add New Post</a>
+
+    {% if posts %}
+      <ul class="post-list">
+        {% for post in posts %}
+          <li>
+            <a href="{{ url_for('view_post', post_id=post.id) }}">{{ post.title }}</a><br>
+            <small>{{ post.date_created.strftime('%d %b %Y, %I:%M %p') }}</small>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No posts yet. Add one!</p>
+    {% endif %}
+  </div>
+</body>
+</html>
