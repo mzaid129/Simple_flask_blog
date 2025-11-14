@@ -11,6 +11,14 @@
     <p><i>{{ post.date_created.strftime('%d %b %Y, %I:%M %p') }}</i></p>
     <p>{{ post.content }}</p>
     <a href="{{ url_for('index') }}">← Back to Home</a>
+    <hr>
+<a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn">Edit Post</a>
+
+<form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST" style="display:inline;">
+    <button type="submit" class="btn delete-btn" onclick="return confirm('Delete this post?')">
+        Delete
+    </button>
+</form>
   </div>
 </body>
 </html>
